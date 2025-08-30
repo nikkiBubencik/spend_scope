@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import AddTransaction from './components/AddTransaction';
 
 function App() {
   return (
     <div className="App">
-      <p>In Progress...</p>
+      <AddTransaction/>
     </div>
   );
 }
