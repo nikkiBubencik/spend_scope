@@ -1,3 +1,13 @@
+:root{
+  --bg-color: #f9fafb;
+  --header-color: #4f46e5;
+  --text-color: #1f2937;
+  --accent-color: #6366f1;
+  --white: #FFF;
+  --income-color: rgb(2, 77, 2);
+  --expense-color: #B30000;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +15,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 code {

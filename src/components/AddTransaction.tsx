@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import {Transaction as TransactionInterface} from '../utils/transactionStorage'
 import { useTransactions } from '../hooks/useTransactions';
+import './transaction.css';
 
 function AddTransaction(){
     const [newTransaction, setNewTransaction] = useState<TransactionInterface>({
@@ -53,93 +54,94 @@ function AddTransaction(){
     }
 
     return (
-        <div>
+        <div className="add-transaction-container">
             <h2>Add Transaction</h2>
             <form onSubmit={SubmitTransaction}>
-            <label htmlFor="name">Transaction Name:</label>
-            <input
-                type="text"
-                name="name"
-                value={newTransaction.name}
-                onChange={handleChange}
-                placeholder="Enter transaction name"
-                required
-            />
-            <br/>
-            <label htmlFor="description">Description:</label>
-            <textarea
-                name="description"
-                value={newTransaction.description}
-                onChange={handleChange}
-                placeholder="Enter a description of the transaction"
-            />
-            <br/>
-            <label htmlFor="amount">Amount: $</label>
-            <input
-                type="number"
-                name="amount"
-                value={newTransaction.amount}
-                onChange={handleChange}
-                required
-            />
-            <br/>
-            <label htmlFor="date">Date:</label>
-            <input
-                type="Date"
-                name="date"
-                value={newTransaction.date}
-                onChange={handleChange}
-                required
-            />
-            <fieldset> 
-                <legend>Transaction Type</legend>
-                <label>
+                <label htmlFor="name">Name:</label>
                 <input
-                    type="radio"
-                    name="transactionType"
-                    value="income"
-                    checked={newTransaction.transactionType === "income"}
+                    type="text"
+                    name="name"
+                    value={newTransaction.name}
                     onChange={handleChange}
+                    placeholder="Enter transaction name"
+                    required
                 />
-                    Income
-                </label>
-                <label>
+                <br/>
+                <label htmlFor="description">Description:</label>
+                <textarea
+                    name="description"
+                    value={newTransaction.description}
+                    onChange={handleChange}
+                    placeholder="Enter a description of the transaction"
+                />
+                <br/>
+                <label htmlFor="amount">Amount: $</label>
                 <input
-                    type="radio"
-                    name="transactionType"
-                    value="expense"
-                    checked={newTransaction.transactionType === "expense"}
+                    type="number"
+                    name="amount"
+                    value={newTransaction.amount}
                     onChange={handleChange}
+                    required
                 />
-                    Expense
-                </label>
-                { newTransaction.transactionType === "expense" &&
-                    <>
-                        <br/>
-                        <label htmlFor="expenseCategory">Expense Category:</label>
-                        <select
-                            name="expenseCategory"
-                            value={newTransaction.expenseCategory}
-                            onChange={handleChange}
-                            required={newTransaction.transactionType === "expense"}
-                            >
-                            <option>Select a category</option>
-                            {categories.map((category) => (
-                                <option key={category} value={category}>
-                                {category}
-                                </option>
-                            ))}
-                        </select>
-                    </>}
-            </fieldset>
+                <br/>
+                <label htmlFor="date">Date:</label>
+                <input
+                    type="Date"
+                    name="date"
+                    value={newTransaction.date}
+                    onChange={handleChange}
+                    required
+                />
+                <fieldset> 
+                    <legend>Transaction Type</legend>
+                    <input
+                        type="radio"
+                        name="transactionType"
+                        value="income"
+                        checked={newTransaction.transactionType === "income"}
+                        onChange={handleChange}
+                    />
+                    <label>
+                        Income
+                    </label>
+                    
+                    <input
+                        type="radio"
+                        name="transactionType"
+                        value="expense"
+                        checked={newTransaction.transactionType === "expense"}
+                        onChange={handleChange}
+                    />
+                    <label>
+                        Expense
+                    </label>
+                    { newTransaction.transactionType === "expense" &&
+                        <>
+                            <br/>
+                            <label htmlFor="expenseCategory">Expense Category:</label>
+                            <select
+                                name="expenseCategory"
+                                value={newTransaction.expenseCategory}
+                                onChange={handleChange}
+                                required={newTransaction.transactionType === "expense"}
+                                >
+                                <option>Select a category</option>
+                                {categories.map((category) => (
+                                    <option key={category} value={category}>
+                                    {category}
+                                    </option>
+                                ))}
+                            </select>
+                        </>}
+                </fieldset>
 
-            <div className="transactionButtons">
-                <button type="submit">Add Transaction</button>
-                <button type="button" onClick={cancelTransaction}>
-                    Cancel
-                </button>
-            </div>
-        </form>
+                <div className="transaction-buttons">
+                    <button type="submit" className="submit-button">Add Transaction</button>
+                    <button type="button" className="cancel-button" onClick={cancelTransaction}>
+                        Cancel
+                    </button>
+                </div>
+            </form>
         </div>
     );
 }
