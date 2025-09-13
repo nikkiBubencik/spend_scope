@@ -6,9 +6,6 @@ interface Props {
   transaction: Transaction;
 }
 
-// TODO 
-// show amount with 2 decimal places
-// color each transaction based on income or isExpressionStatement
 
 const TransactionItem: React.FC<Props> = ({ transaction }) =>{
     const { name, description, amount, transactionType, expenseCategory, date} = transaction;
