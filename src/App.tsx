@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import AddTransaction from './components/Transactions/AddTransaction';
-import TransactionList from './components/Transactions/TransactionList';
+import AddTransaction from './components/Transactions/AddTransaction/AddTransaction';
+import TransactionList from './components/Transactions/TransactionList/TransactionList';
 import { useTransactions } from './hooks/useTransactions';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <AddTransaction/> */}
+      <AddTransaction/>
       <TransactionList transactions={transactions}/>
     </div>
   );

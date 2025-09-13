@@ -1,0 +1,24 @@
+.transactionInfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr .5fr;
+}
+
+.transactionInfo > *{
+    margin: 0rem;
+}
+
+
+.transactionCard.income{
+    border: .15rem solid var(--income-color);
+}
+
+.transactionCard.expense{
+    border: .15rem solid var(--expense-color);
+    /* background-color: var(--light-red); */
+}
+
+.transactionCard{
+    padding: .75rem 1.5rem .75rem 1.5rem;
+}
+
+

@@ -2,3 +2,26 @@
   margin: 0;
   padding: 0;
 }
+
+.submit-button{
+    background-color: var(--income-color);
+    color: var(--white);
+    border-color: var(--income-color);
+
+    &:hover{
+        color: var(--income-color);
+        background-color: (--white);
+    }
+
+}
+
+.cancel-button{
+    background-color: var(--expense-color);
+    color: var(--white);
+    border-color: var(--expense-color);
+
+    &:hover{
+        color: var(--expense-color);
+        background-color: var(--white);
+    }
+}

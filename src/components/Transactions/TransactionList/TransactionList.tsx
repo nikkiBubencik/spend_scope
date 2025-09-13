@@ -1,6 +1,6 @@
-import TransactionItem from "./TrasactionItem";
-import { Transaction } from "../../utils/transactionStorage";
-import './transaction.css';
+import TransactionItem from "../TransactionItem/TrasactionItem";
+import { Transaction } from "../../../utils/transactionStorage";
+import styles from './TransactionList.module.css';
 
 interface Props {
   transactions: Transaction[];
@@ -9,7 +9,7 @@ interface Props {
 const TransactionList: React.FC<Props> =({transactions}) =>{
 
     return (
-        <div className="tranaction-container">
+        <div className={styles.tranactionContainer}>
             <h2>Your Transactions</h2>
             {transactions.map((transaction, index) => 
                 <TransactionItem transaction={transaction} key={index}/>

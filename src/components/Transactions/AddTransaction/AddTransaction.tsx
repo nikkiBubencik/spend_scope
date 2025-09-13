@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import {Transaction as TransactionInterface} from '../../utils/transactionStorage'
-import { useTransactions } from '../../hooks/useTransactions';
-import './transaction.css';
+import {Transaction as TransactionInterface} from '../../../utils/transactionStorage'
+import { useTransactions } from '../../../hooks/useTransactions';
+import styles from './AddTransaction.module.css';
 
 function AddTransaction(){
     const [newTransaction, setNewTransaction] = useState<TransactionInterface>({
@@ -54,7 +54,7 @@ function AddTransaction(){
     }
 
     return (
-        <div className="add-transaction-container">
+        <div className={styles.addTransactionContainer}>
             <h2>Add Transaction</h2>
             <form onSubmit={SubmitTransaction}>
                 <label htmlFor="name">Name:</label>
@@ -135,7 +135,7 @@ function AddTransaction(){
                         </>}
                 </fieldset>
 
-                <div className="transaction-buttons">
+                <div className={styles.transactionButtons}>
                     <button type="submit" className="submit-button">Add Transaction</button>
                     <button type="button" className="cancel-button" onClick={cancelTransaction}>
                         Cancel

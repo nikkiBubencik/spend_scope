@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Transaction } from "../../utils/transactionStorage";
-import './transaction.css';
+import { Transaction } from "../../../utils/transactionStorage";
+import styles from './TransactionItem.module.css';
 
 interface Props {
   transaction: Transaction;
@@ -19,8 +19,8 @@ const TransactionItem: React.FC<Props> = ({ transaction }) =>{
     }
 
     return (
-        <div className={`transaction-card ${transactionType}`}>
-            <div className="transaction-info">
+        <div className={`${styles.transactionCard} ${styles[transactionType]}`}>
+            <div className={styles.transactionInfo}>
                 <>
                     <h3>{name}</h3>
                     <p>{date}</p>

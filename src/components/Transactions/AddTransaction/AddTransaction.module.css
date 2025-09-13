@@ -1,0 +1,13 @@
+label{
+    display: inline-block;
+    width: 6rem;
+}
+
+fieldset{
+    width: 15rem;
+}
+
+.transactionButtons{
+    display: flex;
+    gap: 1rem;
+}
