@@ -10,7 +10,7 @@
 
     &:hover{
         color: var(--income-color);
-        background-color: (--white);
+        background-color: var(--white);
     }
 
 }
@@ -24,4 +24,9 @@
         color: var(--expense-color);
         background-color: var(--white);
     }
+}
+
+.buttonContainer{
+    display: flex;
+    gap: 1rem;
 }

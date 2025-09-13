@@ -135,7 +135,7 @@ function AddTransaction(){
                         </>}
                 </fieldset>
 
-                <div className={styles.transactionButtons}>
+                <div className="buttonContainer">
                     <button type="submit" className="submit-button">Add Transaction</button>
                     <button type="button" className="cancel-button" onClick={cancelTransaction}>
                         Cancel
