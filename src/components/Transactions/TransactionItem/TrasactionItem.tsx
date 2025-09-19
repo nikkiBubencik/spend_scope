@@ -18,23 +18,30 @@ const TransactionItem: React.FC<Props> = ({ transaction }) =>{
     return (
         <div className={`${styles.transactionCard} ${styles[transactionType]}`}>
             <div className={styles.transactionInfo}>
-                <>
-                    <h3>{name}</h3>
-                    <p>{date}</p>
-                </>
-                <p>${amount.toFixed(2)}</p>
-                <>
-                    <p>{transactionType} </p>
-                    {transactionType === 'expense' &&  <p>{expenseCategory}</p>}
-                </>
+                <h3><span className={styles.important}>{name}</span></h3>
+                <p className={styles.important}>{transactionType === 'income' ? '+' : '-'}
+                    {amount.toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                    })}
+                </p>
+
             </div>
+            <div className={styles.transactionInfo}>
+                <p className={`${styles.transactionType} ${styles[transactionType]}`}>
+                    {transactionType} 
+                    {transactionType === 'expense' &&  ` - ${expenseCategory}`}
+                </p>
+                <p>{date}</p>
+            </div>
+            {/* {description && <p>{description}</p>} */}
             {description &&
                 <>
                     {seeDesc && <p>{description}</p>}
                     <button onClick={toggleSeeDesc}>
                         {seeDesc ? 
-                            'Hide Description' 
-                            : 'See Description'}
+                            '▲ Hide Description' 
+                            : '▼ See Description'}
                     </button>
                 </>
             }

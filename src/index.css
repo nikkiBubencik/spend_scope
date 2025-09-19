@@ -4,8 +4,11 @@
   --text-color: #1f2937;
   --accent-color: #6366f1;
   --white: #FFF;
-  --income-color: rgb(2, 77, 2);
+  --income-color: #024d02;
   --expense-color: #B30000;
+  --lt-income-color: #D7FED7;
+  --lt-expense-color: #FFD6D6;
+  --dark-blue: #1417E1;
 }
 
 body {

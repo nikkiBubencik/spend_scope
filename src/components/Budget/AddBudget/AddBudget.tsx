@@ -22,7 +22,7 @@ function AddBudget(){
         setNewBudget((prev: BudgetInterface) => {
             return {
                 ...prev,
-                [name]: name === "amount" ? parseFloat(value) || 0 : value,
+                [name]: name === "limit" ? parseFloat(value) || 0 : value,
             };
         });
         
@@ -65,7 +65,7 @@ function AddBudget(){
                     placeholder="Enter a description of the Budget"
                 />
                 <br/>
-                <label htmlFor="amount">Limit: $</label>
+                <label htmlFor="limit">Limit: $</label>
                 <input
                     type="number"
                     name="limit"
@@ -77,7 +77,7 @@ function AddBudget(){
                 <label htmlFor="endDate">End Date:</label>
                 <input
                     type="date"
-                    name="endDdate"
+                    name="endDate"
                     value={newBudget.endDate}
                     onChange={handleChange}
                 />

@@ -1,24 +1,59 @@
 .transactionInfo{
-    display: grid;
-    grid-template-columns: 1fr 1fr .5fr;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.important{
+    font-weight: 600;
+}
+.transactionType{
+    border-radius: 1rem;
+    padding: .3rem 1rem .3rem 1rem;
+    margin: .1rem;
+    width: fit-content;
 }
 
 .transactionInfo > *{
     margin: 0rem;
 }
 
-
 .transactionCard.income{
     border: .15rem solid var(--income-color);
 }
-
 .transactionCard.expense{
     border: .15rem solid var(--expense-color);
-    /* background-color: var(--light-red); */
 }
+
+.transactionType.expense{
+    background-color: var(--lt-expense-color);
+}
+.transactionType.income{
+    background-color: var(--lt-income-color);
+}
+
 
 .transactionCard{
-    padding: .75rem 1.5rem .75rem 1.5rem;
+    width: min(500px, 100vw);
+    box-sizing: border-box;
+    padding: .75rem;
+    transition: border-radius 0.3s ease;
+    border-radius: .3rem;
+    &>*{
+        margin: 0;
+    }
+    &:hover{
+        border-radius: 1rem;;
+    }
 }
 
+button{
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    border: 0;
+    &:hover{
+        color: var(--dark-blue);
+    }
 
+}
