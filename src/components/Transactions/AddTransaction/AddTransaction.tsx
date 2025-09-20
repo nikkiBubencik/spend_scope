@@ -58,8 +58,9 @@ function AddTransaction(){
             <h2>Add Transaction</h2>
             <form onSubmit={SubmitTransaction}>
                 <label htmlFor="name">Name:</label>
+                <br/>
                 <input
-                    type="text"
+                    className={styles.textInput}                    type="text"
                     name="name"
                     value={newTransaction.name}
                     onChange={handleChange}
@@ -68,23 +69,29 @@ function AddTransaction(){
                 />
                 <br/>
                 <label htmlFor="description">Description:</label>
+                <br/>
                 <textarea
+                    className={styles.textInput}   
                     name="description"
                     value={newTransaction.description}
                     onChange={handleChange}
                     placeholder="Enter a description of the transaction"
                 />
                 <br/>
-                <label htmlFor="amount">Amount: $</label>
-                <input
-                    type="number"
-                    name="amount"
-                    value={newTransaction.amount}
-                    onChange={handleChange}
-                    required
-                />
+                <label htmlFor="amount">Amount:</label>
                 <br/>
+                <div className={styles.amountInput}>
+                    <span className={styles.prefix}>$</span>
+                    <input
+                        type="number"
+                        name="amount"
+                        value={newTransaction.amount}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
                 <label htmlFor="date">Date:</label>
+                <br/>
                 <input
                     type="Date"
                     name="date"

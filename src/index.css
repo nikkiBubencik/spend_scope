@@ -10,6 +10,10 @@
   --lt-income-color: #D7FED7;
   --lt-expense-color: #FFD6D6;
   --dark-blue: #1417E1;
+
+  --fw-s: 400;
+  --fw-m: 600;
+  --fw-l: 800;
 }
 
 body {
