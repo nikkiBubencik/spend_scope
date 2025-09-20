@@ -33,3 +33,12 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.componentGroup{
+  display: flex; 
+  gap: .1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}

@@ -16,8 +16,8 @@ function App() {
     <div className="App">
       <Header />
       <AddTransaction/>
-      {/* <TransactionList transactions={transactions}/>
-      <AddBudget />
+      <TransactionList transactions={transactions}/>
+      {/* <AddBudget />
       <BudgetList budgets={budgets}/> */}
     </div>
   );

@@ -9,7 +9,7 @@ interface Props {
 const TransactionList: React.FC<Props> =({transactions}) =>{
 
     return (
-        <div className={styles.tranactionContainer}>
+        <div className={`componentGroup styles.tranactionContainer`}>
             <h2>Your Transactions</h2>
             {transactions.map((transaction, index) => 
                 <TransactionItem transaction={transaction} key={index}/>

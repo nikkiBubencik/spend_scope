@@ -54,7 +54,7 @@ function AddTransaction(){
     }
 
     return (
-        <div className={styles.addTransactionContainer}>
+        <div className={`componentGroup styles.addTransactionContainer`}>
             <h2>Add Transaction</h2>
             <form onSubmit={SubmitTransaction}>
                 <label htmlFor="name">Name:</label>
