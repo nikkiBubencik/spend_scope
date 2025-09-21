@@ -58,3 +58,19 @@ button{
     }
 
 }
+
+
+
+#editBtn{
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &::after{
+        content: "\270F"; 
+        font-size: 1.2rem;
+        display: inline-block;
+    }
+}
+

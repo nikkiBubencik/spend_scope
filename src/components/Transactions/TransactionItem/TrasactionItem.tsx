@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Transaction } from "../../../utils/transactionStorage";
 import styles from './TransactionItem.module.css';
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   transaction: Transaction;
@@ -8,11 +9,17 @@ interface Props {
 
 
 const TransactionItem: React.FC<Props> = ({ transaction }) =>{
-    const { name, description, amount, transactionType, expenseCategory, date} = transaction;
+    const { id, name, description, amount, transactionType, expenseCategory, date} = transaction;
     const [seeDesc, setSeeDesc] = useState<boolean>(false);
 
     const toggleSeeDesc = () => {
         setSeeDesc(!seeDesc);
+    }
+
+    const navigate = useNavigate();
+    function editTransasction(){
+        console.log(id);
+        navigate(`/transaction/${id}`);
     }
 
     return (
@@ -35,16 +42,20 @@ const TransactionItem: React.FC<Props> = ({ transaction }) =>{
                 <p>{date}</p>
             </div>
             {/* {description && <p>{description}</p>} */}
-            {description &&
-                <>
-                    {seeDesc && <p>{description}</p>}
-                    <button onClick={toggleSeeDesc}>
-                        {seeDesc ? 
-                            '▲ Hide Description' 
-                            : '▼ See Description'}
-                    </button>
-                </>
-            }
+            <div className={`${styles.transactionInfo} ${styles.btnDiv}`}>
+                {description ?
+                    <>
+                        {seeDesc && <p>{description}</p>}
+                        <button onClick={toggleSeeDesc}>
+                            {seeDesc ? 
+                                '▲ Hide Description' 
+                                : '▼ See Description'}
+                        </button>
+                    </>
+                    : <p></p>
+                } 
+                <button id={styles.editBtn} onClick={editTransasction}></button>
+            </div>
         </div>
     );
 }

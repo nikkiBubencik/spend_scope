@@ -1,7 +1,8 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import {Transaction as TransactionInterface} from '../../../utils/transactionStorage'
 import { useTransactions } from '../../../hooks/useTransactions';
 import styles from './AddTransaction.module.css';
+import { useParams } from "react-router-dom";
 
 function AddTransaction(){
     const [newTransaction, setNewTransaction] = useState<TransactionInterface>({
@@ -13,7 +14,15 @@ function AddTransaction(){
             'amount': 0,
             'date': Date()
         });    
-    const { addTransaction } = useTransactions();
+    const { transactions, addTransaction } = useTransactions();
+    const { id } = useParams();
+    useEffect(() => {
+        if(id){
+            setNewTransaction(
+                transactions.filter(transaction => transaction.id === id)[0]
+            )
+        }
+    }, [id, transactions]);
 
     // TODO: will make expense catgeory a list saved in local storage
     const categories = ["Grocery", "Housing", "Transportation", "Subscriptions", "Entertainment", "Other"];

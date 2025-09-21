@@ -34,6 +34,7 @@ function App() {
           <Routes>
             <Route path="/" element={<AddTransaction />} />
             <Route path="/transactions" element={<TransactionList transactions={transactions}/>} />
+            <Route path="/transaction/:id" element={<AddTransaction />} />
             {/* <Route path="/budgets" element={<Contact />} /> */}
           </Routes>
         </main>
