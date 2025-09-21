@@ -43,17 +43,19 @@ const TransactionItem: React.FC<Props> = ({ transaction }) =>{
             </div>
             {/* {description && <p>{description}</p>} */}
             <div className={`${styles.transactionInfo} ${styles.btnDiv}`}>
-                {description ?
-                    <>
-                        {seeDesc && <p>{description}</p>}
-                        <button onClick={toggleSeeDesc}>
-                            {seeDesc ? 
-                                '▲ Hide Description' 
-                                : '▼ See Description'}
-                        </button>
-                    </>
-                    : <p></p>
-                } 
+                <div>
+                    {description ?
+                        <>
+                            {seeDesc && <p>{description}</p>}
+                            <button onClick={toggleSeeDesc}>
+                                {seeDesc ? 
+                                    '▲ Hide Description' 
+                                    : '▼ See Description'}
+                            </button>
+                        </>
+                        : <p></p>
+                    } 
+                </div>
                 <button id={styles.editBtn} onClick={editTransasction}></button>
             </div>
         </div>
