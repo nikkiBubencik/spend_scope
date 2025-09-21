@@ -10,7 +10,7 @@ This file outlines the planned development phases and features for SpendScope. T
 
 ### Transactions
 - [x] Display transaction list
-- [ ] Edit transactions
+- [X] Edit transactions
 - [ ] Search transaction list
 - [ ] Sort transactions by date
 - [ ] Accumulate total from transactions
