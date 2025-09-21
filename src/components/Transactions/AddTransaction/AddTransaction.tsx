@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 function AddTransaction(){
     const [newTransaction, setNewTransaction] = useState<TransactionInterface>({
-            'id' : 'id',
+            'id' : 0,
             'transactionType': 'income',
             'name': '',
             'description': '',
@@ -14,13 +14,21 @@ function AddTransaction(){
             'amount': 0,
             'date': Date()
         });    
-    const { transactions, addTransaction } = useTransactions();
+    const [edit, setEdit] = useState<boolean>(false);
+    const { transactions, addTransaction, updateTransaction } = useTransactions();
     const { id } = useParams();
+
     useEffect(() => {
         if(id){
-            setNewTransaction(
-                transactions.filter(transaction => transaction.id === id)[0]
-            )
+            const transaction = transactions.filter(transaction => transaction.id === parseInt(id));
+            if(transaction.length > 0){
+                setNewTransaction(
+                    transaction[0]
+                // alert(id + parseInt(id) + transactions.filter(transaction => transaction.id === parseInt(id))[0]?.name);
+                )
+                setEdit(true);
+            }
+            // alert(id);
         }
     }, [id, transactions]);
 
@@ -59,12 +67,13 @@ function AddTransaction(){
         }
         console.log("Adding Transaction...", newTransaction);
         // TODO: Save transaction
-        addTransaction(newTransaction);
+        if(edit) updateTransaction(newTransaction);
+        else addTransaction(newTransaction);
     }
 
     return (
         <div className={`componentGroup styles.addTransactionContainer`}>
-            <h2>Add Transaction</h2>
+            <h2>{edit ? 'Edit' : 'Add'} Transaction</h2>
             <form onSubmit={SubmitTransaction}>
                 <label htmlFor="name">Name:</label>
                 <br/>
@@ -152,7 +161,7 @@ function AddTransaction(){
                 </fieldset>
 
                 <div className="buttonContainer">
-                    <button type="submit" className="submit-button">Add Transaction</button>
+                    <button type="submit" className="submit-button">Save</button>
                     <button type="button" className="cancel-button" onClick={cancelTransaction}>
                         Cancel
                     </button>
