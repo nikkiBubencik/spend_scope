@@ -61,16 +61,21 @@ button{
 
 
 
-#editBtn{
+.Btn{
     width: 2rem;
     height: 2rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     &::after{
-        content: "\270F"; 
         font-size: 1.2rem;
         display: inline-block;
     }
 }
+#editBtn::after{
+    content: "\270F"; 
+}
 
+#deleteBtn::after{
+    content:"\1F5D1";
+}
