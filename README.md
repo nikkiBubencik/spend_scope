@@ -23,9 +23,9 @@ A responsive web application to track income, expenses, budgets, and savings goa
 | Area        | Tech |
 |-------------|------|
 | Frontend    | React + TypeScript |
-| Styling     | CSS Modules or Styled Components |
+| Styling     | CSS Modules |
 | State Mgmt  | useState, useContext |
-| Charts      | Chart.js or Recharts |
+| Charts      | Chart.js |
 | Storage     | `localStorage` |
 
 ---
