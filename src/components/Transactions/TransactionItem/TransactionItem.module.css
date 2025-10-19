@@ -1,0 +1,81 @@
+.transactionInfo{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.important{
+    font-weight: 600;
+}
+.transactionType{
+    border-radius: 1rem;
+    padding: .3rem 1rem .3rem 1rem;
+    margin: .1rem;
+    width: fit-content;
+}
+
+.transactionInfo > *{
+    margin: 0rem;
+}
+
+.transactionCard.income{
+    border: .15rem solid var(--income-color);
+}
+.transactionCard.expense{
+    border: .15rem solid var(--expense-color);
+}
+
+.transactionType.expense{
+    background-color: var(--lt-expense-color);
+}
+.transactionType.income{
+    background-color: var(--lt-income-color);
+}
+
+
+.transactionCard{
+    width: min(500px, 100vw);
+    box-sizing: border-box;
+    padding: .75rem;
+    transition: border-radius 0.3s ease;
+    border-radius: .3rem;
+    background-color: var(--card-color);
+    &>*{
+        margin: 0;
+    }
+    &:hover{
+        border-radius: 1rem;;
+    }
+}
+
+.button{
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    border: 0;
+    &:hover{
+        color: var(--dark-blue);
+    }
+
+}
+
+
+
+.Btn{
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &::after{
+        font-size: 1.2rem;
+        display: inline-block;
+    }
+}
+#editBtn::after{
+    content: "\270F"; 
+}
+
+#deleteBtn::after{
+    content:"\1F5D1";
+}

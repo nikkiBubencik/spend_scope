@@ -1,0 +1,11 @@
+.bar {
+  width: 1rem;
+  height: .1rem;
+  background-color: var(--white);
+  margin: .15rem 0;
+
+}
+.container {
+    cursor: pointer;
+    width: fit-content;
+}

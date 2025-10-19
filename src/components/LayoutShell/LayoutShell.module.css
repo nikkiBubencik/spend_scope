@@ -1,0 +1,52 @@
+.layout{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.submit-button{
+    background-color: var(--income-color);
+    color: var(--white);
+    border-color: var(--income-color);
+
+    &:hover{
+        color: var(--income-color);
+        background-color: var(--white);
+    }
+
+}
+
+.cancel-button{
+    background-color: var(--expense-color);
+    color: var(--white);
+    border-color: var(--expense-color);
+
+    &:hover{
+        color: var(--expense-color);
+        background-color: var(--white);
+    }
+}
+
+.buttonContainer{
+    display: flex;
+    gap: 1rem;
+}
+
+.mainLayout{
+  display: flex;
+  flex: 1;
+}
+
+.main{
+    flex: 1;
+}
+
+
+.sidebar {
+  width: fit-content;
+  background: var(--header-color);
+  color: var(--white);
+  height: 100%;
+}

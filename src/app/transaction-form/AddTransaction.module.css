@@ -1,0 +1,30 @@
+.label{
+    display: inline-block;
+    font-weight: var(--fw-m);
+}
+
+.fieldset{
+    width: min(100vw, 12rem);
+}
+
+.textInput, .amountInput {
+    width: min(20rem, 100vw);
+    box-sizing: border-box;
+    outline: none;
+}
+.amountInput input{
+    width: calc(100% - 1.1rem);
+    &:focus, &:active{
+        width: calc(100% - 1.2rem);
+    }
+
+}
+
+
+.input{
+    outline: none;
+}
+input:focus, input:active, .textInput:focus, .textInpute:active{
+    border: .2rem solid var(--accent-color) ;
+    border-radius: .2rem;
+}
