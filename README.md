@@ -2,7 +2,7 @@
 
 **Work In Progress**
 
-A responsive web application to track income, expenses, budgets, and savings goals — all in one clean, easy-to-use dashboard. Built with React, TypeScript, and Chart.js.
+A responsive web application to track income, expenses, budgets, and savings goals — all in one clean, easy-to-use dashboard. Built with React, Next.js, TypeScript, and Chart.js.
 
 ---
 
@@ -25,7 +25,7 @@ A responsive web application to track income, expenses, budgets, and savings goa
 | Frontend    | React + TypeScript |
 | Styling     | CSS Modules or Styled Components |
 | State Mgmt  | useState, useContext |
-| Charts      | Chart.js or Recharts |
+| Charts      | Chart.js |
 | Storage     | `localStorage` |
 
 ---

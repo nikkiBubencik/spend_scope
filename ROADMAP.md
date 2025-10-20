@@ -13,7 +13,7 @@ This file outlines the planned development phases and features for SpendScope. T
 - [X] Edit transactions
 - [ ] Search transaction list
 - [ ] Sort transactions by date
-- [ ] Accumulate total from transactions
+- [X] Accumulate total from transactions
 - [ ] Transaction charts
 
 ### Budgets
@@ -32,7 +32,6 @@ This file outlines the planned development phases and features for SpendScope. T
 
 ### UI Enhancements
 - [ ] Sidebar navigation
-- [ ] Routing
 - [ ] Light/dark theme toggle
 
 ### Deployment
@@ -47,21 +46,23 @@ This file outlines the planned development phases and features for SpendScope. T
 **Goal:** Transition from local data storage to a secure, full-stack web application with a database and user authentication.
 
 ### Backend Setup
-- [ ] Set up Node.js + Express server
+- [ ] Use Next.js API Routes
 - [ ] Design PostgreSQL schema (`users`, `transactions`, `budgets`, `goals`)
-- [ ] Use Sequelize, Knex.js, or raw SQL for DB interaction
+- [ ] Create reusable API endpoints
+- [ ] Implement server-side validation and error handling
 
 ### Authentication
+- [ ] Integrate NextAuth.js for secure, production-ready authentication
 - [ ] Add login/signup forms on frontend
-- [ ] Implement JWT or session-based authentication
 - [ ] Hash passwords
 - [ ] Restrict backend endpoints to authenticated users only
+- [ ] Handle session persistence and auto-logout
 
 ### Data Handling & State
-- [ ] Replace `localStorage` with live API calls
+- [ ] Replace localStorage with API calls to Next.js backend
 - [ ] Refactor frontend state to store and fetch data from backend
 - [ ] Implement loading states and error handling
-- [ ] Update context/state management logic to use API
+- [ ] Store auth/session state globally
 
 ### Improved Charts & Filters
 - [ ] Improve data visualizations using backend-fetched data
