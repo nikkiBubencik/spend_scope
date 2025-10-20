@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Transaction } from "../../../utils/transactionStorage";
+import { Transaction } from "@/types/Transaction";
 import styles from './TransactionItem.module.css';
 // import { useNavigate } from "react-router-dom";
 import { useTransactions } from "../../../hooks/useTransactions";

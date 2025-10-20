@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import {Transaction as TransactionInterface} from '@/utils/transactionStorage'
+import { Transaction as TransactionInterface } from "@/types/Transaction";
 import { useTransactions } from '@/hooks/useTransactions';
 import { useRouter } from 'next/navigation';
 // import styles from './AddTransaction.module.css';

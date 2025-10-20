@@ -1,14 +1,16 @@
+import { Transaction } from "@/types/Transaction";
+
 export const STORAGE_KEY = 'transactions';
 
-export interface Transaction {
-    id: number;
-    name: string;
-    description: string;
-    amount: number;
-    transactionType: 'income' | 'expense';
-    expenseCategory?: string;
-    date: string;
-}
+// export interface Transaction {
+//     id: number;
+//     name: string;
+//     description: string;
+//     amount: number;
+//     transactionType: 'income' | 'expense';
+//     expenseCategory?: string;
+//     date: string;
+// }
 
 //get transaction
 export function getTransactions(): Transaction[]{

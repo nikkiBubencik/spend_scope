@@ -1,6 +1,6 @@
 'use client';
 import TransactionItem from "@/components/Transactions/TransactionItem/TransactionItem";
-import { Transaction } from "@/utils/transactionStorage";
+import { Transaction } from "@/types/Transaction";
 import styles from './TransactionList.module.css';
 import { useTransactions } from "@/hooks/useTransactions";
 import Link from "next/link";

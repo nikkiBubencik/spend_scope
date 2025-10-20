@@ -1,6 +1,7 @@
-import { Transaction } from '@/utils/transactionStorage';
+import { Transaction } from "@/types/Transaction";
 
 export interface SearchInterface {
     filter: keyof Transaction,
-    value: string
+    value: string,
+    endValye: string
 }
