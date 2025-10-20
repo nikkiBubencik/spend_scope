@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Transaction, getTransactions, saveTransaction, getNextID } from "../utils/transactionStorage";
+import { getTransactions, saveTransaction, getNextID } from "@/utils/transactionStorage";
+import { Transaction } from "@/types/Transaction";
 
 export function useTransactions(){
     const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -12,6 +13,7 @@ export function useTransactions(){
     const addTransaction = (tx: Transaction) => {
         tx.id = getNextID();
         const updated = [...transactions, tx];
+        const sorted = [...updated].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         setTransactions(updated);
         saveTransaction(updated);
     };
