@@ -3,8 +3,13 @@ import { useState } from 'react';
 import Header from '@/components/Header/Header';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import styles from './LayoutShell.module.css';
+import React, { ReactNode } from 'react';
 
-export default function LayoutShell({ children }) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function LayoutShell({ children }: RootLayoutProps) {
   const [showSidebar, setShowSidebar] = useState(false);
 
   function toggleSidebar() {
