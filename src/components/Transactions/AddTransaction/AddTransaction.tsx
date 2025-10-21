@@ -63,6 +63,7 @@ function AddTransaction({ id }: props){
 
     function cancelTransaction() {
         console.log("Transaction Cancelled");
+        router.back();
     }
 
     function SubmitTransaction(event: FormEvent<HTMLFormElement>) {
