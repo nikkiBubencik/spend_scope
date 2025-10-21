@@ -22,7 +22,7 @@ A responsive web application to track income, expenses, budgets, and savings goa
 
 | Area        | Tech |
 |-------------|------|
-| Frontend    | React + TypeScript |
+| Frontend    | React + TypeScript + Next.js |
 | Styling     | CSS Modules or Styled Components |
 | State Mgmt  | useState, useContext |
 | Charts      | Chart.js |
