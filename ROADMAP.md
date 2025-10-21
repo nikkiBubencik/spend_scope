@@ -11,8 +11,8 @@ This file outlines the planned development phases and features for SpendScope. T
 ### Transactions
 - [x] Display transaction list
 - [X] Edit transactions
-- [ ] Search transaction list
-- [ ] Sort transactions by date
+- [X] Search transaction list
+- [X] Sort transactions by date
 - [X] Accumulate total from transactions
 - [ ] Transaction charts
 
@@ -31,7 +31,7 @@ This file outlines the planned development phases and features for SpendScope. T
 - [ ] General savings calculator
 
 ### UI Enhancements
-- [ ] Sidebar navigation
+- [X] Sidebar navigation
 - [ ] Light/dark theme toggle
 
 ### Deployment

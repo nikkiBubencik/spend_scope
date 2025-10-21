@@ -14,8 +14,8 @@ export function useTransactions(){
         tx.id = getNextID();
         const updated = [...transactions, tx];
         const sorted = [...updated].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        setTransactions(updated);
-        saveTransaction(updated);
+        setTransactions(sorted);
+        saveTransaction(sorted);
     };
     
     const updateTransaction = (tx: Transaction) => {

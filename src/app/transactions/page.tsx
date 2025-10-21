@@ -28,17 +28,61 @@ const TransactionList: React.FC<Props> =() =>{
     }, [showTransactions])
 
     const searchTransactions = (searchCriteria: SearchInterface) => {
-        const { filter, value }: SearchInterface = searchCriteria;
-        // alert(filter + " " + value);
-        if (value == '') setShowTransactions(transactions);
+        const { filter, value, endValue, transactionType, expenseCategory }: SearchInterface = searchCriteria;
+        const dateEndValue: number = new Date(endValue).getTime();
+        const dateValue: number = new Date(value).getTime();
+
+        if (value == '' && endValue == '' && transactionType== '') setShowTransactions(transactions);
         else {
             setShowTransactions(
                 transactions.filter(transaction => {
                     const field = transaction[filter];
-                    // alert("transaction.name " + transaction.name.includes(value) );
-                    // console.log(typeof(transaction.name) + " |" + transaction.name + "| " + typeof(value) + " |" + value + "|");
                     if(typeof(field) === "string"){
-                        return field?.toLowerCase().includes(value.toLowerCase());
+                        if(filter == "date"){
+                            return ((transactionType == "" || (
+                                transaction.transactionType === transactionType
+                                && (transaction.expenseCategory === expenseCategory
+                                    || expenseCategory == "")
+                            ))
+                            && (
+                                endValue == '' ||
+                                new Date(field).getTime() >= (dateValue)
+                            )
+                            && (
+                                endValue == '' ||
+                                new Date(field).getTime() <= dateEndValue
+                            )
+                            );
+                        }
+                        else{
+                            return (field?.toLowerCase().includes(value.toLowerCase()) 
+                            && 
+                            (transactionType == "" || (
+                                transaction.transactionType === transactionType
+                                && (transaction.expenseCategory === expenseCategory
+                                    || expenseCategory == "")
+                            ))
+                            );
+                        }
+                    }
+                    else if(typeof(field) == "number"){
+                        //filter between amounts given
+                        return ((transactionType == "" || (
+                                transaction.transactionType === transactionType
+                                && (transaction.expenseCategory === expenseCategory
+                                    || expenseCategory == "")
+                            ))
+                        && 
+                            (
+                                value == "" ||
+                                field >= parseFloat(value)
+                            )
+                        
+                        && (
+                            endValue == "" ||
+                            field <= parseFloat(endValue)
+                        )
+                        );
                     }
                 }
                 )
