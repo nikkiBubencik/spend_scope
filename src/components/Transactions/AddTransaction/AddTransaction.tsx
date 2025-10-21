@@ -4,6 +4,7 @@ import { Transaction as TransactionInterface } from "@/types/Transaction";
 import { useTransactions } from '@/hooks/useTransactions';
 import { useRouter } from 'next/navigation';
 // import styles from './AddTransaction.module.css';
+import { useExpense } from "@/hooks/useExpense";
 
 interface props {
     id?: number;
@@ -22,6 +23,7 @@ function AddTransaction({ id }: props){
     const [edit, setEdit] = useState<boolean>(false);
     const { transactions, addTransaction, updateTransaction } = useTransactions();
     const router = useRouter();
+    const { categories } = useExpense();
 
     useEffect(() => {
         // alert("Transactions" + transactions[0]?.id);
@@ -38,7 +40,7 @@ function AddTransaction({ id }: props){
     }, [id, transactions]);
 
     // TODO: will make expense catgeory a list saved in local storage
-    const categories = ["Grocery", "Housing", "Transportation", "Subscriptions", "Entertainment", "Other"];
+    // const categories = ["Grocery", "Housing", "Transportation", "Subscriptions", "Entertainment", "Other"];
 
     function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = event.target;
