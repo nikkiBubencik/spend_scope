@@ -64,13 +64,15 @@ function AddBudget({ id }: props){
     }
 
     return (
-        <div>
+        <div className="componentGroup">
             <h2>{edit ? "Edit" : "Add"} Budget</h2>
             <form onSubmit={SubmitBudget}>
                 <label htmlFor="name">Name:</label>
+                <br/>
                 <input
                     type="text"
                     name="name"
+                    className="textInput"
                     value={newBudget.name}
                     onChange={handleChange}
                     placeholder="Enter Budget Name"
@@ -78,23 +80,28 @@ function AddBudget({ id }: props){
                 />
                 <br/>
                 <label htmlFor="description">Description:</label>
+                <br/>
                 <textarea
                     name="description"
+                    className="textInput"
                     value={newBudget.description}
                     onChange={handleChange}
                     placeholder="Enter a description of the Budget"
                 />
                 <br/>
-                <label htmlFor="limit">Limit: $</label>
-                <input
-                    type="number"
-                    name="limit"
-                    value={newBudget.limit}
-                    onChange={handleChange}
-                    required
-                />
-                <br/>
+                <label htmlFor="limit">Limit: </label>
+                <div className="amountInput">
+                    <span className="prefix">$</span>
+                    <input
+                        type="number"
+                        name="limit"
+                        value={newBudget.limit}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
                 <label htmlFor="endDate">End Date:</label>
+                <br/>
                 <input
                     type="date"
                     name="endDate"
@@ -103,6 +110,7 @@ function AddBudget({ id }: props){
                 />
                 <br/>
                 <label htmlFor="expenseCategory">Budget Category:</label>
+                <br/>
                 <select
                     name="expenseCategory"
                     value={newBudget.expenseCategory}
