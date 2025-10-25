@@ -17,13 +17,14 @@ This file outlines the planned development phases and features for SpendScope. T
 - [ ] Transaction charts
 
 ### Budgets
-- [ ] Display budget information
-- [ ] Add/edit budgets
+- [X] Display budget information
+- [X] Add/edit budgets
 - [ ] Set budget frequency
-- [ ] Add expenses to localStorage
-- [ ] Allow addition of new expenses
 - [ ] Budget progress bar
 
+## Expense Cateogries
+- [X] Add expenses to localStorage
+- [ ] Allow addition of new expenses
 
 ### Calculators
 - [ ] High-Yield Savings Account (HYSA) calculator
