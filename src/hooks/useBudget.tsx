@@ -22,9 +22,18 @@ export function useBudget(){
         saveBudget(updated);
     };
 
+    const updateBudget = (bt: Budget) => {
+        const updated = budgets.map(budget =>
+            budget.id === bt.id ? bt : budget
+        );
+        setBudgets(updated);
+        saveBudget(updated);
+    };
+
     return {
         budgets,
         addBudget,
-        deleteBudget
+        deleteBudget,
+        updateBudget
     }
 }

@@ -1,9 +1,17 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { Budget as BudgetInterface } from "../../../utils/budgetStorage";
-import { useBudget } from '../../../hooks/useBudget';
+'use client';
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { Budget as BudgetInterface } from "@/utils/budgetStorage";
+import { useBudget } from '@/hooks/useBudget';
 import './AddBudget.module.css';
+import { useExpense } from "@/hooks/useExpense";
+import { useRouter } from 'next/navigation';
 
-function AddBudget(){
+interface props {
+    id?: number;
+}
+
+function AddBudget({ id }: props){
+    const [edit, setEdit] = useState<boolean>(false);
     const [newBudget, setNewBudget] = useState<BudgetInterface>({
             'id' : 0,
             'name': '',
@@ -12,10 +20,19 @@ function AddBudget(){
             'limit': 0,
             'endDate': ''
         });    
-    const { addBudget } = useBudget();
-
-    // TODO: will make expense catgeory a list saved in local storage
-    const categories = ["Grocery", "Housing", "Transportation", "Subscriptions", "Entertainment", "Other"];
+    const { budgets, addBudget, updateBudget } = useBudget();
+    const { categories } = useExpense();
+    const router = useRouter();
+    
+    useEffect(() => {
+        if (id && budgets.length > 0) {
+            const budget:BudgetInterface = budgets.filter(budget => budget.id == id)[0];
+            if (budget) {
+                setNewBudget(budget);
+                setEdit(true);
+            }
+        }
+    }, [id, budgets]);
 
     function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = event.target;
@@ -30,6 +47,7 @@ function AddBudget(){
 
     function cancelBudget() {
         console.log("Budget Cancelled");
+        router.back();
     }
 
     function SubmitBudget(event: FormEvent<HTMLFormElement>) {
@@ -40,12 +58,14 @@ function AddBudget(){
             return;
         }
         console.log("Adding Budget...", newBudget);
-        addBudget(newBudget);
+        if(edit) updateBudget(newBudget);
+        else addBudget(newBudget);
+        router.push("/budgets");
     }
 
     return (
         <div>
-            <h2>Add Budget</h2>
+            <h2>{edit ? "Edit" : "Add"} Budget</h2>
             <form onSubmit={SubmitBudget}>
                 <label htmlFor="name">Name:</label>
                 <input
@@ -99,7 +119,7 @@ function AddBudget(){
                 <br/>
                 <br/>
                 <div className="buttonContainer">
-                    <button type="submit" className="submit-button">Add Budget</button>
+                    <button type="submit" className="submit-button">Save</button>
                     <button type="button" className="cancel-button" onClick={cancelBudget}>
                         Cancel
                     </button>

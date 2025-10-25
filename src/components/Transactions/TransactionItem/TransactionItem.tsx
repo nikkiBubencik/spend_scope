@@ -28,7 +28,7 @@ const TransactionItem: React.FC<Props> = ({ transaction, eraseTransaction }) =>{
     }
 
     return (
-        <div className={`${styles.transactionCard} ${styles[transactionType]}`}>
+        <div className={`listCard ${styles[transactionType]}`}>
             <div className={styles.transactionInfo}>
                 <h3><span className={styles.important}>{name}</span></h3>
                 <p className={styles.important}>{transactionType === 'income' ? '+' : '-'}

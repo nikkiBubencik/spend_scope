@@ -128,3 +128,77 @@ fieldset{
     }
 
 }
+
+.transactionInfo{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.important{
+    font-weight: var(--fw-m);
+}
+
+.transactionInfo > *{
+    margin: 0rem;
+}
+
+.transactionCard.income{
+    border-left: .15rem solid var(--income-color);
+
+}
+.transactionCard.expense{
+    border-left: .15rem solid var(--expense-color);
+}
+
+.listCard{
+    width: min(500px, 100vw);
+    box-sizing: border-box;
+    padding: .75rem;
+    transition: border-radius 0.3s ease;
+    /* border-radius: .3rem; */
+    background-color: var(--card-color);
+    transition: box-shadow 0.3s ease,
+        transform 0.3s ease;
+    &>*{
+        margin: 0;
+    }
+    &:hover{
+        /* border-radius: 1rem; */
+        box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.2);
+        /* z-index: 1; */
+        transform: translateY(-10px);
+    }
+}
+
+.button{
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    border: 0;
+    &:hover{
+        color: var(--dark-blue);
+    }
+
+}
+
+
+
+.Btn{
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &::after{
+        font-size: 1.2rem;
+        display: inline-block;
+    }
+}
+.editBtn::after{
+    content: "\270F"; 
+}
+
+.deleteBtn::after{
+    content:"\1F5D1";
+}
