@@ -12,7 +12,7 @@ function Header({ toggleSidebar }: HeaderProps){
 
     return(
         <div className="header-container">
-            <h1>Spend Scope</h1>
+            <h1 style={{margin:"0"}}>Spend Scope</h1>
             {/* temporary button to clear local storage */}
             {/* <button onClick={clearStorage}>Clear LocalStorage</button> */}
             <NavIcon toggleSidebar={toggleSidebar}/>
