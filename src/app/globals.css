@@ -129,7 +129,7 @@ fieldset{
 
 }
 
-.transactionInfo{
+.itemInfo{
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -140,19 +140,19 @@ fieldset{
     font-weight: var(--fw-m);
 }
 
-.transactionInfo > *{
+.itemInfo > *{
     margin: 0rem;
 }
 
-.transactionCard.income{
+.itemCard.income{
     border-left: .15rem solid var(--income-color);
 
 }
-.transactionCard.expense{
+.itemCard.expense{
     border-left: .15rem solid var(--expense-color);
 }
 
-.listCard{
+.itemCard{
     width: min(500px, 100vw);
     box-sizing: border-box;
     padding: .75rem;
@@ -181,8 +181,6 @@ fieldset{
     }
 
 }
-
-
 
 .Btn{
     width: 2rem;
