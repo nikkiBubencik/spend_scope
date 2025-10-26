@@ -1,30 +1,39 @@
-import { useExpense } from "@/hooks/useExpense";
+import { useExpenseContext } from "@/context/ExpenseContext";
 import { useState, FormEvent } from "react";
 
 interface props {
-    cancelAdd: () => void
+    closeAdd: () => void
 }
 
-const AddExpense: React.FC<props> =({ cancelAdd }) =>{
+const AddExpense: React.FC<props> =({ closeAdd }) =>{
+    const [error, setError] = useState<boolean>(false);
     const [ newCategory, setNewCategory] = useState<string>('');
-    const { addCategory } = useExpense();
+    const { addCategory } = useExpenseContext();
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        addCategory(newCategory);
+        if(addCategory(newCategory) == "error") setError(true);
+        else closeAdd();
     }
+
     return(
-        <div>
+        <div className="popup">
+            <h2>Add a New Expense Category</h2>
+            {error && <p style={{color:'red'}}>Category already exists</p>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="category">Categoy Name:</label>
+                <br/>
                 <input
                     type="text"
                     name="category"
                     value={newCategory}
                     onChange={(event) => setNewCategory(event.target.value)}
                     />
-                <button type="submit">Save</button>
-                <button onSubmit={cancelAdd}>Cancel</button>
+                <br/>
+                <div className="buttonContainer">
+                    <button type="submit">Save</button>
+                    <button type="button" onClick={closeAdd}>Cancel</button>
+                </div>
             </form>
         </div>
     )

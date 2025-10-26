@@ -208,3 +208,27 @@ fieldset{
 .deleteBtn::after{
     content:"\1F5D1";
 }
+
+.popup {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+  padding: 3rem;
+  border: 2px solid var(--text-color);
+  border-radius: 1.5rem;
+  width: fit-content;
+  text-align: center;
+
+  & form{
+    justify-items: center;
+    text-align: center;
+    width: min(100vw, 100%);
+  }
+
+  & input{
+    width: 100%;
+  }
+}

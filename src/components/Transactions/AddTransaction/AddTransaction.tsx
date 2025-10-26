@@ -4,13 +4,15 @@ import { Transaction as TransactionInterface } from "@/types/Transaction";
 import { useTransactions } from '@/hooks/useTransactions';
 import { useRouter } from 'next/navigation';
 // import styles from './AddTransaction.module.css';
-import { useExpense } from "@/hooks/useExpense";
+import { useExpenseContext } from "@/context/ExpenseContext";
+import AddExpense from "@/components/Expense/AddExpense";
 
 interface props {
     id?: number;
 }
 
 function AddTransaction({ id }: props){
+    const [showAddCategory, setShowAddCategory] = useState<boolean>(false);
     const [newTransaction, setNewTransaction] = useState<TransactionInterface>({
             'id' : 0,
             'transactionType': 'income',
@@ -23,7 +25,7 @@ function AddTransaction({ id }: props){
     const [edit, setEdit] = useState<boolean>(false);
     const { transactions, addTransaction, updateTransaction } = useTransactions();
     const router = useRouter();
-    const { categories } = useExpense();
+    const { categories } = useExpenseContext();
 
     useEffect(() => {
         // alert("Transactions" + transactions[0]?.id);
@@ -74,15 +76,20 @@ function AddTransaction({ id }: props){
             return;
         }
         console.log("Adding Transaction...", newTransaction);
-        // TODO: Save transaction
         if(edit) updateTransaction(newTransaction);
         else addTransaction(newTransaction);
 
         router.push(`/transactions`);
     }
 
+    const toggleAddNewCategory = () => {
+        setShowAddCategory(!showAddCategory);
+
+    }
+
     return (
         <div className={`componentGroup styles.addTransactionContainer`}>
+            {showAddCategory && <AddExpense closeAdd={toggleAddNewCategory}/>}
             <h2>{edit ? 'Edit' : 'Add'} Transaction</h2>
             <form onSubmit={SubmitTransaction}>
                 <label htmlFor="name">Name:</label>
@@ -169,6 +176,7 @@ function AddTransaction({ id }: props){
                                 ))}
                             </select>
                         </>}
+                    <button onClick={toggleAddNewCategory} type="button">Add New Cateogy</button>
                 </fieldset>
 
                 <div className="buttonContainer">

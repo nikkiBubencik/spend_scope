@@ -4,6 +4,7 @@ import Header from '@/components/Header/Header';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import styles from './LayoutShell.module.css';
 import React, { ReactNode } from 'react';
+import { ExpenseProvider } from "@/context/ExpenseContext";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -25,7 +26,9 @@ export default function LayoutShell({ children }: RootLayoutProps) {
             <Sidebar />
           </div>
         )}
-        <main className={styles.main}>{children}</main>
+        <ExpenseProvider>
+          <main className={styles.main}>{children}</main>
+        </ExpenseProvider>
       </div>
     </div>
   );
