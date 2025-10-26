@@ -11,7 +11,7 @@
   --lt-expense-color: #FFD6D6;
   --dark-blue: #1417E1;
 
-  --fw-s: 400;
+  --fw-s: 500;
   --fw-m: 600;
   --fw-l: 800;
 }
@@ -36,6 +36,10 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+p{
+  margin: 0;
 }
 
 .componentGroup{
@@ -137,7 +141,11 @@ fieldset{
 }
 
 .important{
+    font-size: 1.2rem;
     font-weight: var(--fw-m);
+}
+.semiImportant{
+  font-weight: var(--fw-s);
 }
 
 .itemInfo > *{

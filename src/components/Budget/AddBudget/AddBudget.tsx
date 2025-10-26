@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { Budget as BudgetInterface } from "@/utils/budgetStorage";
+import { Budget as BudgetInterface } from "@/types/Budget";
 import { useBudget } from '@/hooks/useBudget';
 import './AddBudget.module.css';
 import { useExpense } from "@/hooks/useExpense";
@@ -18,7 +18,9 @@ function AddBudget({ id }: props){
             'description': '',
             'expenseCategory': '',
             'limit': 0,
-            'endDate': ''
+            'startDate': '',
+            'endDate': '',
+            'frequency': 'weekly'
         });    
     const { budgets, addBudget, updateBudget } = useBudget();
     const { categories } = useExpense();
@@ -100,15 +102,6 @@ function AddBudget({ id }: props){
                         required
                     />
                 </div>
-                <label htmlFor="endDate">End Date:</label>
-                <br/>
-                <input
-                    type="date"
-                    name="endDate"
-                    value={newBudget.endDate}
-                    onChange={handleChange}
-                />
-                <br/>
                 <label htmlFor="expenseCategory">Budget Category:</label>
                 <br/>
                 <select
@@ -124,6 +117,41 @@ function AddBudget({ id }: props){
                         </option>
                     ))}
                 </select>
+                <br/>
+                <label htmlFor="frequency">Frequency:</label>
+                <br/>
+                <select
+                    name="frequency"
+                    value={newBudget.frequency}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="weekly">
+                        Weekly
+                    </option>
+                    <option value="monthly">
+                            Monthly
+                    </option>
+                </select>
+                <br/>
+                <label htmlFor="startDate">Scheduled Start Date:</label>
+                <br/>
+                <input
+                    type="date"
+                    name="startDate"
+                    value={newBudget.startDate}
+                    onChange={handleChange}
+                    required
+                />
+                <br/>
+                <label htmlFor="endDate">End Date(Optional):</label>
+                <br/>
+                <input
+                    type="date"
+                    name="endDate"
+                    value={newBudget.endDate}
+                    onChange={handleChange}
+                />
                 <br/>
                 <br/>
                 <div className="buttonContainer">

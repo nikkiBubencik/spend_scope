@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Budget } from "@/utils/budgetStorage";
+import { Budget } from "@/types/Budget";
 import styles from './BudgetItem.module.css';
 import { useRouter } from "next/navigation";
 
@@ -10,12 +10,12 @@ interface Props {
 
 
 const BudgetItem: React.FC<Props> = ({ budget, eraseBudget }) =>{
-    const { id, name, description, limit, expenseCategory, endDate} = budget;
-    const [seeDesc, setSeeDesc] = useState<boolean>(false);
+    const { id, name, description, limit, expenseCategory, endDate, frequency, startDate} = budget;
+    const [seeMore, setSeeMore] = useState<boolean>(false);
     const router = useRouter();
 
-    const toggleSeeDesc = () => {
-        setSeeDesc(!seeDesc);
+    const toggleSeeMore = () => {
+        setSeeMore(!seeMore);
     }
 
     const editBudget = () => {
@@ -34,21 +34,23 @@ const BudgetItem: React.FC<Props> = ({ budget, eraseBudget }) =>{
                 </p>
             </div>
             <div className="itemInfo">
-                <p>{expenseCategory}</p>
-                <p>{endDate}</p>
+                <p>{expenseCategory} - {frequency}</p>
             </div>
             <div className="itemInfo">
                 <div>
-                    {description &&
+                    {seeMore &&
                         <>
-                            {seeDesc && <p>{description}</p>}
-                            <button className="button" onClick={toggleSeeDesc}>
-                                {seeDesc ? 
-                                    '▲ Hide Description' 
-                                    : '▼ See Description'}
-                            </button>
+                            <p><span className="semiImportant">Start Date:</span> {startDate}</p>
+                            {endDate && <p><span className="semiImportant">End Date:</span> {endDate}</p>}
+                            {description && <p><span className="semiImportant">Notes:</span> {description}</p>}
                         </>
                     }
+                    <button className="button" onClick={toggleSeeMore}>
+                        {seeMore ? 
+                            '▲ See Less' 
+                            : '▼ See More'}
+                    </button>
+                    
                 </div>
                 <div>
                     <button className="editBtn" onClick={editBudget}></button>

@@ -1,5 +1,5 @@
 'use client';
-import { Budget } from "@/utils/budgetStorage";
+import { Budget } from "@/types/Budget";
 import BudgetItem from "@/components/Budget/BudgetItem/BudgetItem";
 import styles from './BudgetList.module.css';
 import { useBudget } from "@/hooks/useBudget";

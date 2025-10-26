@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Budget, getBudgets, saveBudget, getNextID } from "../utils/budgetStorage";
+import { getBudgets, saveBudget, getNextID } from "../utils/budgetStorage";
+import { Budget } from "@/types/Budget";
 
 export function useBudget(){
     const [budgets, setBudgets] = useState<Budget[]>([]);
