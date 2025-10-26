@@ -36,7 +36,7 @@ This file outlines the planned development phases and features for SpendScope. T
 - [ ] Light/dark theme toggle
 
 ### Deployment
-- [ ] Make app live
+- [X] Make app live
 - [ ] Collect feedback from users
 - [ ] Make necessary updates based on feedback
 
