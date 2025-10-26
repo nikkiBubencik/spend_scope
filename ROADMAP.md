@@ -24,7 +24,7 @@ This file outlines the planned development phases and features for SpendScope. T
 
 ## Expense Cateogries
 - [X] Add expenses to localStorage
-- [ ] Allow addition of new expenses
+- [X] Allow addition of new expenses
 
 ### Calculators
 - [ ] High-Yield Savings Account (HYSA) calculator
