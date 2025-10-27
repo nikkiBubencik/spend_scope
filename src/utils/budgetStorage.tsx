@@ -1,13 +1,5 @@
+import { Budget } from "@/types/Budget";
 export const STORAGE_KEY = 'budgets';
-
-export interface Budget {
-    id: number;
-    name: string;
-    description: string;
-    limit: number;
-    expenseCategory: string;
-    endDate?: string;
-}
 
 //get Budget
 export function getBudgets(): Budget[]{

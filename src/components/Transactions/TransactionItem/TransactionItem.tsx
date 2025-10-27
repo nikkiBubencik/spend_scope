@@ -28,10 +28,10 @@ const TransactionItem: React.FC<Props> = ({ transaction, eraseTransaction }) =>{
     }
 
     return (
-        <div className={`${styles.transactionCard} ${styles[transactionType]}`}>
-            <div className={styles.transactionInfo}>
-                <h3><span className={styles.important}>{name}</span></h3>
-                <p className={styles.important}>{transactionType === 'income' ? '+' : '-'}
+        <div className={`itemCard ${transactionType}`}>
+            <div className="itemInfo">
+                <h3><span className="important">{name}</span></h3>
+                <p className="important">{transactionType === 'income' ? '+' : '-'}
                     {amount.toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD',
@@ -39,20 +39,19 @@ const TransactionItem: React.FC<Props> = ({ transaction, eraseTransaction }) =>{
                 </p>
 
             </div>
-            <div className={styles.transactionInfo}>
+            <div className="itemInfo">
                 <p className={`${styles.transactionType} ${styles[transactionType]}`}>
                     {transactionType} 
                     {transactionType === 'expense' &&  ` - ${expenseCategory}`}
                 </p>
                 <p>{date}</p>
             </div>
-            {/* {description && <p>{description}</p>} */}
-            <div className={`${styles.transactionInfo} ${styles.btnDiv}`}>
+            <div className={`itemInfo btnDiv`}>
                 <div>
                     {description ?
                         <>
                             {seeDesc && <p>{description}</p>}
-                            <button className={styles.button} onClick={toggleSeeDesc}>
+                            <button className="button" onClick={toggleSeeDesc}>
                                 {seeDesc ? 
                                     '▲ Hide Description' 
                                     : '▼ See Description'}
@@ -62,8 +61,8 @@ const TransactionItem: React.FC<Props> = ({ transaction, eraseTransaction }) =>{
                     } 
                 </div>
                 <div>
-                    <button id={styles.editBtn} onClick={editTransasction}></button>
-                    <button id={styles.deleteBtn} onClick={() => eraseTransaction(id, name, date)}></button>
+                    <button className="editBtn" onClick={editTransasction}></button>
+                    <button className="deleteBtn" onClick={() => eraseTransaction(id, name, date)}></button>
                 </div>
             </div>
         </div>

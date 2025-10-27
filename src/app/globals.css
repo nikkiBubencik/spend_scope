@@ -11,7 +11,7 @@
   --lt-expense-color: #FFD6D6;
   --dark-blue: #1417E1;
 
-  --fw-s: 400;
+  --fw-s: 500;
   --fw-m: 600;
   --fw-l: 800;
 }
@@ -36,6 +36,10 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+p{
+  margin: 0;
 }
 
 .componentGroup{
@@ -127,4 +131,104 @@ fieldset{
         width: calc(100% - 1.2rem);
     }
 
+}
+
+.itemInfo{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.important{
+    font-size: 1.2rem;
+    font-weight: var(--fw-m);
+}
+.semiImportant{
+  font-weight: var(--fw-s);
+}
+
+.itemInfo > *{
+    margin: 0rem;
+}
+
+.itemCard.income{
+    border-left: .15rem solid var(--income-color);
+
+}
+.itemCard.expense{
+    border-left: .15rem solid var(--expense-color);
+}
+
+.itemCard{
+    width: min(500px, 100vw);
+    box-sizing: border-box;
+    padding: .75rem;
+    transition: border-radius 0.3s ease;
+    /* border-radius: .3rem; */
+    background-color: var(--card-color);
+    transition: box-shadow 0.3s ease,
+        transform 0.3s ease;
+    &>*{
+        margin: 0;
+    }
+    &:hover{
+        /* border-radius: 1rem; */
+        box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.2);
+        /* z-index: 1; */
+        transform: translateY(-10px);
+    }
+}
+
+.button{
+    background-color: var(--card-color);
+    color: var(--accent-color);
+    border: 0;
+    &:hover{
+        color: var(--dark-blue);
+    }
+
+}
+
+.Btn{
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &::after{
+        font-size: 1.2rem;
+        display: inline-block;
+    }
+}
+.editBtn::after{
+    content: "\270F"; 
+}
+
+.deleteBtn::after{
+    content:"\1F5D1";
+}
+
+.popup {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+  padding: 3rem;
+  border: 2px solid var(--text-color);
+  border-radius: 1.5rem;
+  width: fit-content;
+  text-align: center;
+
+  & form{
+    justify-items: center;
+    text-align: center;
+    width: min(100vw, 100%);
+  }
+
+  & input{
+    width: 100%;
+  }
 }

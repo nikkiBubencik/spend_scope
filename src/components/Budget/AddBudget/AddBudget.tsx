@@ -1,21 +1,41 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { Budget as BudgetInterface } from "../../../utils/budgetStorage";
-import { useBudget } from '../../../hooks/useBudget';
+'use client';
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { Budget as BudgetInterface } from "@/types/Budget";
+import { useBudget } from '@/hooks/useBudget';
 import './AddBudget.module.css';
+import { useExpense } from "@/hooks/useExpense";
+import { useRouter } from 'next/navigation';
 
-function AddBudget(){
+interface props {
+    id?: number;
+}
+
+function AddBudget({ id }: props){
+    const [edit, setEdit] = useState<boolean>(false);
     const [newBudget, setNewBudget] = useState<BudgetInterface>({
             'id' : 0,
             'name': '',
             'description': '',
             'expenseCategory': '',
             'limit': 0,
-            'endDate': ''
+            'startDate': '',
+            'endDate': '',
+            'frequency': 'weekly',
+            'startsOn': -1
         });    
-    const { addBudget } = useBudget();
-
-    // TODO: will make expense catgeory a list saved in local storage
-    const categories = ["Grocery", "Housing", "Transportation", "Subscriptions", "Entertainment", "Other"];
+    const { budgets, addBudget, updateBudget } = useBudget();
+    const { categories } = useExpense();
+    const router = useRouter();
+    
+    useEffect(() => {
+        if (id && budgets.length > 0) {
+            const budget:BudgetInterface = budgets.filter(budget => budget.id == id)[0];
+            if (budget) {
+                setNewBudget(budget);
+                setEdit(true);
+            }
+        }
+    }, [id, budgets]);
 
     function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = event.target;
@@ -30,6 +50,7 @@ function AddBudget(){
 
     function cancelBudget() {
         console.log("Budget Cancelled");
+        router.back();
     }
 
     function SubmitBudget(event: FormEvent<HTMLFormElement>) {
@@ -40,17 +61,21 @@ function AddBudget(){
             return;
         }
         console.log("Adding Budget...", newBudget);
-        addBudget(newBudget);
+        if(edit) updateBudget(newBudget);
+        else addBudget(newBudget);
+        router.push("/budgets");
     }
 
     return (
-        <div>
-            <h2>Add Budget</h2>
+        <div className="componentGroup">
+            <h2>{edit ? "Edit" : "Add"} Budget</h2>
             <form onSubmit={SubmitBudget}>
                 <label htmlFor="name">Name:</label>
+                <br/>
                 <input
                     type="text"
                     name="name"
+                    className="textInput"
                     value={newBudget.name}
                     onChange={handleChange}
                     placeholder="Enter Budget Name"
@@ -58,31 +83,28 @@ function AddBudget(){
                 />
                 <br/>
                 <label htmlFor="description">Description:</label>
+                <br/>
                 <textarea
                     name="description"
+                    className="textInput"
                     value={newBudget.description}
                     onChange={handleChange}
                     placeholder="Enter a description of the Budget"
                 />
                 <br/>
-                <label htmlFor="limit">Limit: $</label>
-                <input
-                    type="number"
-                    name="limit"
-                    value={newBudget.limit}
-                    onChange={handleChange}
-                    required
-                />
-                <br/>
-                <label htmlFor="endDate">End Date:</label>
-                <input
-                    type="date"
-                    name="endDate"
-                    value={newBudget.endDate}
-                    onChange={handleChange}
-                />
-                <br/>
+                <label htmlFor="limit">Limit: </label>
+                <div className="amountInput">
+                    <span className="prefix">$</span>
+                    <input
+                        type="number"
+                        name="limit"
+                        value={newBudget.limit}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
                 <label htmlFor="expenseCategory">Budget Category:</label>
+                <br/>
                 <select
                     name="expenseCategory"
                     value={newBudget.expenseCategory}
@@ -97,9 +119,44 @@ function AddBudget(){
                     ))}
                 </select>
                 <br/>
+                <label htmlFor="frequency">Frequency:</label>
+                <br/>
+                <select
+                    name="frequency"
+                    value={newBudget.frequency}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="weekly">
+                        Weekly
+                    </option>
+                    <option value="monthly">
+                            Monthly
+                    </option>
+                </select>
+                <br/>
+                <label htmlFor="startDate">Scheduled Start Date:</label>
+                <br/>
+                <input
+                    type="date"
+                    name="startDate"
+                    value={newBudget.startDate}
+                    onChange={handleChange}
+                    required
+                />
+                <br/>
+                {/* <label htmlFor="endDate">End Date(Optional):</label>
+                <br/>
+                <input
+                    type="date"
+                    name="endDate"
+                    value={newBudget.endDate}
+                    onChange={handleChange}
+                />
+                <br/> */}
                 <br/>
                 <div className="buttonContainer">
-                    <button type="submit" className="submit-button">Add Budget</button>
+                    <button type="submit" className="submit-button">Save</button>
                     <button type="button" className="cancel-button" onClick={cancelBudget}>
                         Cancel
                     </button>

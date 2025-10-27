@@ -17,13 +17,14 @@ This file outlines the planned development phases and features for SpendScope. T
 - [ ] Transaction charts
 
 ### Budgets
-- [ ] Display budget information
-- [ ] Add/edit budgets
-- [ ] Set budget frequency
-- [ ] Add expenses to localStorage
-- [ ] Allow addition of new expenses
+- [X] Display budget information
+- [X] Add/edit budgets
+- [X] Set budget frequency
 - [ ] Budget progress bar
 
+## Expense Cateogries
+- [X] Add expenses to localStorage
+- [X] Allow addition of new expenses
 
 ### Calculators
 - [ ] High-Yield Savings Account (HYSA) calculator
@@ -35,7 +36,7 @@ This file outlines the planned development phases and features for SpendScope. T
 - [ ] Light/dark theme toggle
 
 ### Deployment
-- [ ] Make app live
+- [X] Make app live
 - [ ] Collect feedback from users
 - [ ] Make necessary updates based on feedback
 

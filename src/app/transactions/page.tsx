@@ -115,7 +115,7 @@ const TransactionList: React.FC<Props> =() =>{
             </>
             : 
                 <>
-                    <p>No Transactions to display</p>
+                    <p>No transactions to display</p>
                     <Link href="/transaction-form">Add a transaction</Link>
                 </>
             }

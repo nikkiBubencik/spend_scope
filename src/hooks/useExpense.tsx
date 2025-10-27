@@ -10,9 +10,11 @@ export function useExpense(){
     }, []);
 
     const addCategory = (category: string) => {
+        if(categories.includes(category)) return "error";
         const updated = [...categories, category];
         setCategories(updated);
         saveExpenseCategory(updated);
+        return "added";
     };
     
     // need to update logic 

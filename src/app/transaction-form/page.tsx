@@ -3,4 +3,4 @@ function AddTransactionPage(){
     return <AddTransaction />
 }
 
-export default AddTransaction;
+export default AddTransactionPage;
