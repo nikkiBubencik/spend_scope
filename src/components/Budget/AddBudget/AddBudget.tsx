@@ -20,7 +20,8 @@ function AddBudget({ id }: props){
             'limit': 0,
             'startDate': '',
             'endDate': '',
-            'frequency': 'weekly'
+            'frequency': 'weekly',
+            'startsOn': -1
         });    
     const { budgets, addBudget, updateBudget } = useBudget();
     const { categories } = useExpense();
@@ -144,7 +145,7 @@ function AddBudget({ id }: props){
                     required
                 />
                 <br/>
-                <label htmlFor="endDate">End Date(Optional):</label>
+                {/* <label htmlFor="endDate">End Date(Optional):</label>
                 <br/>
                 <input
                     type="date"
@@ -152,7 +153,7 @@ function AddBudget({ id }: props){
                     value={newBudget.endDate}
                     onChange={handleChange}
                 />
-                <br/>
+                <br/> */}
                 <br/>
                 <div className="buttonContainer">
                     <button type="submit" className="submit-button">Save</button>

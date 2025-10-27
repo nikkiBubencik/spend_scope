@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Budget } from "@/types/Budget";
 import styles from './BudgetItem.module.css';
 import { useRouter } from "next/navigation";
+import { useBudget } from "@/hooks/useBudget";
 
 interface Props {
   budget: Budget;
   eraseBudget: (id:number, name: string, category: string) => void;
+  determineAlignment: (id: number) => number;
 }
 
 
-const BudgetItem: React.FC<Props> = ({ budget, eraseBudget }) =>{
+const BudgetItem: React.FC<Props> = ({ budget, eraseBudget, determineAlignment }) =>{
     const { id, name, description, limit, expenseCategory, endDate, frequency, startDate} = budget;
     const [seeMore, setSeeMore] = useState<boolean>(false);
     const router = useRouter();
+    const [budgetUsage, setBudgetUsage] = useState<number>(0);
+
+    useEffect(() => {
+        setBudgetUsage(determineAlignment(id));
+    }, []);
+
+    useEffect(() => console.log("USage: " + budgetUsage + " id: " + id), [budgetUsage]);
 
     const toggleSeeMore = () => {
         setSeeMore(!seeMore);
@@ -43,6 +52,7 @@ const BudgetItem: React.FC<Props> = ({ budget, eraseBudget }) =>{
                             <p><span className="semiImportant">Start Date:</span> {startDate}</p>
                             {endDate && <p><span className="semiImportant">End Date:</span> {endDate}</p>}
                             {description && <p><span className="semiImportant">Notes:</span> {description}</p>}
+                            <p>Budget alignment: ${budgetUsage} of ${limit}</p>
                         </>
                     }
                     <button className="button" onClick={toggleSeeMore}>

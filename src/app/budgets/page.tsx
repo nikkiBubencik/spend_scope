@@ -10,7 +10,7 @@ interface Props {
 }
 
 const BudgetList: React.FC<Props> =() =>{
-    const {budgets, deleteBudget} = useBudget();
+    const {budgets, deleteBudget, determineAlignment} = useBudget();
 
     const eraseBudget = (id: number, name: string, category: string) =>{
         if(window.confirm("You are about to delete " + name + "(" + category + ")")){
@@ -23,7 +23,12 @@ const BudgetList: React.FC<Props> =() =>{
             <h2>Your Budgets</h2>
             { budgets.length > 0 ?
                 budgets.map((budget, index) => 
-                    <BudgetItem budget={budget} eraseBudget={eraseBudget} key={index}/>
+                    <BudgetItem 
+                        budget={budget} 
+                        eraseBudget={eraseBudget} 
+                        determineAlignment={determineAlignment}
+                        key={index}
+                        />
                 )
                 :
                 <>

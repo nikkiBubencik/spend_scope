@@ -19,7 +19,7 @@ This file outlines the planned development phases and features for SpendScope. T
 ### Budgets
 - [X] Display budget information
 - [X] Add/edit budgets
-- [ ] Set budget frequency
+- [X] Set budget frequency
 - [ ] Budget progress bar
 
 ## Expense Cateogries
