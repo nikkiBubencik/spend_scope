@@ -3,6 +3,7 @@ import { Budget } from "@/types/Budget";
 import styles from './BudgetItem.module.css';
 import { useRouter } from "next/navigation";
 import { useBudget } from "@/hooks/useBudget";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 interface Props {
   budget: Budget;
@@ -45,14 +46,16 @@ const BudgetItem: React.FC<Props> = ({ budget, eraseBudget, determineAlignment }
             <div className="itemInfo">
                 <p>{expenseCategory} - {frequency}</p>
             </div>
+            <ProgressBar value={budgetUsage/limit > 1 ? 1 : budgetUsage/limit} />
             <div className="itemInfo">
                 <div>
                     {seeMore &&
                         <>
+                            <p>Budget alignment: ${budgetUsage} of ${limit}</p>
                             <p><span className="semiImportant">Start Date:</span> {startDate}</p>
                             {endDate && <p><span className="semiImportant">End Date:</span> {endDate}</p>}
                             {description && <p><span className="semiImportant">Notes:</span> {description}</p>}
-                            <p>Budget alignment: ${budgetUsage} of ${limit}</p>
+                            
                         </>
                     }
                     <button className="button" onClick={toggleSeeMore}>
