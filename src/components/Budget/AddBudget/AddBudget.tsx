@@ -23,6 +23,7 @@ function AddBudget({ id }: props){
             'frequency': 'weekly',
             'startsOn': -1
         });    
+    const [inputLimit, setInputLimit] = useState<string>(newBudget.limit.toString());
     const { budgets, addBudget, updateBudget } = useBudget();
     const { categories } = useExpense();
     const router = useRouter();
@@ -36,6 +37,21 @@ function AddBudget({ id }: props){
             }
         }
     }, [id, budgets]);
+
+    function handleLimitChange(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.target.value.replace(/[^0-9.]/g, '');
+        
+        const decimalIndex = value.indexOf('.');
+        if (decimalIndex >= 0) {
+            value = value.slice(0, decimalIndex + 3);
+        }
+
+        setInputLimit(value); 
+        setNewBudget(prev => ({
+            ...prev,
+            limit: parseFloat(value) || 0, 
+        }));
+    }
 
     function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = event.target;
@@ -96,10 +112,11 @@ function AddBudget({ id }: props){
                 <div className="amountInput">
                     <span className="prefix">$</span>
                     <input
-                        type="number"
+                        type="text"
                         name="limit"
-                        value={newBudget.limit}
-                        onChange={handleChange}
+                        value={inputLimit}
+                        onChange={handleLimitChange}
+                        placeholder="0.00"
                         required
                     />
                 </div>
