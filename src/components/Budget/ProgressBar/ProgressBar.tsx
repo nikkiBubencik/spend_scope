@@ -21,7 +21,7 @@ export default function ProgressBar({ value }: progressProps) {
             "rgba(49, 118, 14, 0.8)"
             : (value >= .95
                 ? "rgba(233, 4, 4, 0.8)"
-                : "rgba(255, 255, 0, 0.8)"));
+                : "rgba(255, 255, 0, 0.8)");
     
     const data = {
         labels: [""],
