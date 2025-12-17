@@ -23,7 +23,7 @@ function AddBudget({ id }: props){
             'frequency': 'weekly',
             'startsOn': -1
         });    
-    const [inputLimit, setInputLimit] = useState<string>(newBudget.limit.toString());
+    const [inputLimit, setInputLimit] = useState<Number>(newBudget.limit);
     const { budgets, addBudget, updateBudget } = useBudget();
     const { categories } = useExpense();
     const router = useRouter();
@@ -34,6 +34,7 @@ function AddBudget({ id }: props){
             if (budget) {
                 setNewBudget(budget);
                 setEdit(true);
+                setInputLimit(budget.limit);
             }
         }
     }, [id, budgets]);
@@ -112,7 +113,7 @@ function AddBudget({ id }: props){
                 <div className="amountInput">
                     <span className="prefix">$</span>
                     <input
-                        type="text"
+                        type="number"
                         name="limit"
                         value={inputLimit}
                         onChange={handleLimitChange}
