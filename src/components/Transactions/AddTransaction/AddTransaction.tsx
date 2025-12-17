@@ -22,6 +22,7 @@ function AddTransaction({ id }: props){
             'amount': 0,
             'date': Date()
         });    
+    const [inputAmount, setinputAmount] = useState<number>(newTransaction.amount);
     const [edit, setEdit] = useState<boolean>(false);
     const { transactions, addTransaction, updateTransaction } = useTransactions();
     const router = useRouter();
@@ -37,6 +38,7 @@ function AddTransaction({ id }: props){
             if (transaction) {
                 setNewTransaction(transaction);
                 setEdit(true);
+                setinputAmount(transaction.amount);
             }
         }
     }, [id, transactions]);
@@ -61,6 +63,20 @@ function AddTransaction({ id }: props){
             };
         });
         
+    }
+    function handleAmountChange(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.target.value.replace(/[^0-9.]/g, '');
+        
+        const decimalIndex = value.indexOf('.');
+        if (decimalIndex >= 0) {
+            value = value.slice(0, decimalIndex + 3);
+        }
+
+        setinputAmount(parseFloat(value)); 
+        setNewTransaction(prev => ({
+            ...prev,
+            amount: parseFloat(value) || 0, 
+        }));
     }
 
     function cancelTransaction() {
@@ -121,9 +137,10 @@ function AddTransaction({ id }: props){
                     <input
                         type="number"
                         name="amount"
-                        value={newTransaction.amount}
-                        onChange={handleChange}
+                        value={inputAmount}
+                        onChange={handleAmountChange}
                         required
+                        placeholder = "0.00"
                     />
                 </div>
                 <label htmlFor="date">Date:</label>
