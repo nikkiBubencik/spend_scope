@@ -23,7 +23,7 @@ function AddBudget({ id }: props){
             'frequency': 'weekly',
             'startsOn': -1
         });    
-    const [inputLimit, setInputLimit] = useState<Number>(newBudget.limit);
+    const [inputLimit, setInputLimit] = useState<number>(newBudget.limit);
     const { budgets, addBudget, updateBudget } = useBudget();
     const { categories } = useExpense();
     const router = useRouter();
@@ -47,7 +47,7 @@ function AddBudget({ id }: props){
             value = value.slice(0, decimalIndex + 3);
         }
 
-        setInputLimit(value); 
+        setInputLimit(parseFloat(value)); 
         setNewBudget(prev => ({
             ...prev,
             limit: parseFloat(value) || 0, 
