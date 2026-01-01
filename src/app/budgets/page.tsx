@@ -27,7 +27,7 @@ const BudgetList: React.FC<Props> =() =>{
                         budget={budget} 
                         eraseBudget={eraseBudget} 
                         determineAlignment={determineAlignment}
-                        key={index}
+                        key={budget.id}
                         />
                 )
                 :
