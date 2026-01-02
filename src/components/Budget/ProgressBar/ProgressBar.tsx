@@ -5,6 +5,8 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+  ChartData,
+  ChartOptions,
 } from "chart.js";
 import { useState } from "react";
 import { Bar } from "react-chartjs-2";
@@ -23,7 +25,7 @@ export default function ProgressBar({ value }: progressProps) {
                 ? "rgba(233, 4, 4, 0.8)"
                 : "rgba(255, 255, 0, 0.8)");
     
-    const data = {
+    const data: ChartData<"bar"> = {
         labels: [""],
         datasets: [
         {
@@ -41,7 +43,7 @@ export default function ProgressBar({ value }: progressProps) {
         ],
     };
 
-    const options = {
+    const options: ChartOptions<"bar"> = {
         indexAxis: "y",
         responsive: true,
         maintainAspectRatio: false, 
