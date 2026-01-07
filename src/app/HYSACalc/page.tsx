@@ -15,10 +15,12 @@ export default function HYSACalc() {
   );
 
   return (
-    <div>
+    <div className="componentGroup">
         <h2>HYSA calculator</h2>
+        <div className="calcContainer">
         <form >
             <label htmlFor="initial">Initial Amount:</label>
+            <br/>
             <input
                 type="number"
                 name="initital"
@@ -29,6 +31,7 @@ export default function HYSACalc() {
             />
             <br />
             <label htmlFor="contribution">contribution Amount:</label>
+            <br/>
             <input
                 type="number"
                 name="contribution"
@@ -39,6 +42,7 @@ export default function HYSACalc() {
             />
             <br />
             <label htmlFor="Rate">APY:</label>
+            <br/>
             <input
                 type="number"
                 name="rate"
@@ -49,6 +53,7 @@ export default function HYSACalc() {
             />
             <br />
             <label htmlFor="duration">Duration(years):</label>
+            <br/>
             <input
                 type="number"
                 name="duration"
@@ -58,25 +63,27 @@ export default function HYSACalc() {
                 required
             />
         </form>
+        <p>PLACEHOLDER CALCULATOR CHART</p>
         <div className="totals_display">
-            <p> Contribution Total:
+            <p> <span className="important">Contribution Total: </span>
                 {result.totalContributed.toLocaleString('en-US', {
                     style: 'currency',
                     currency: 'USD',
                 })}
             </p>
-            <p> Interest Total:
+            <p><span className="important">Interest Total: </span>
                 {result.interest.toLocaleString('en-US', {
                     style: 'currency',
                     currency: 'USD',
                 })}
             </p>
-            <p> Total:
+            <p> <span className="important">Combined Total: </span>
                 {result.amount.toLocaleString('en-US', {
                     style: 'currency',
                     currency: 'USD',
                 })}
             </p>
+        </div>
         </div>
     </div>
   )
