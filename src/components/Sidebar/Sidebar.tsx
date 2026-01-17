@@ -14,6 +14,10 @@ function Sidebar(){
                 <span className={styles.subsection}><Link href="/budget-form" className={styles.link}>Add Budget</Link></span>
                 <span className={styles.subsection}><Link href="/budgets" className={styles.link}>View Budgets</Link></span>
             </section>
+            <section>
+                <h2>Calculators</h2>
+                <span className={styles.subsection}><Link href="/HYSACalc" className={styles.link}>High Yield Savings</Link></span>
+            </section>
         </nav>
     )
 }
