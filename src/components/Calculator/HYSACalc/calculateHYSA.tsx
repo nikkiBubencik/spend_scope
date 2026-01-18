@@ -1,43 +1,44 @@
-interface HYSAResult {
-  amount: number;
-  totalContributed: number;
-  interest: number;
-}
+import { HYSAResult, HYSAInput } from '@/types/CalculatorTypes';
 
-interface HYSAInput {
-  initial: number;
-  contribution: number;
-  rate: number;
-  freq: number;
-  duration: number;
-}
-
-export default function calculateHYSA({ initial,  contribution, rate, freq, duration}: HYSAInput): HYSAResult {
-  if (rate <= 0 || duration <= 0) {
-    return {
-      amount: initial,
-      totalContributed: initial,
-      interest: 0,
+export default function calculateHYSA({ initial,  contribution, rate, freq, duration}: HYSAInput): HYSAResult[] {
+  let current: HYSAResult = {
+    amount: initial,
+    totalContributed: initial,
+    interest: 0,
+    year: 0
     };
-  }
+  let result: HYSAResult[] = [current];
 
   const r = rate / 100;
   const n = freq;
-  const t = duration;
+  // const t = duration;
+  
+  for(let year = 1; year <= duration; year++){  
+    const contributionsThisYear = contribution * n;
+    let amount: number;
 
-  const initialGrowth =
-    initial * Math.pow(1 + r / n, n * t);
+    if (r === 0){
+      amount = current.amount + contributionsThisYear;
+    }
+    else{
+      const amountAfterInterest =
+        current.amount * Math.pow(1 + r / n, n);
 
-  const contributionGrowth =
-    contribution *
-    ((Math.pow(1 + r / n, n * t) - 1) / (r / n));
+      amount =
+        amountAfterInterest +
+        contribution * ((Math.pow(1 + r / n, n) - 1) / (r / n));
+    }
+    const totalContributed =
+      current.totalContributed + contributionsThisYear;
 
-  const amount = initialGrowth + contributionGrowth;
-  const totalContributed = initial + contribution * n * t;
+    current = {
+      year,
+      amount,
+      totalContributed,
+      interest: amount - totalContributed
+    };
 
-  return {
-    amount,
-    totalContributed,
-    interest: amount - totalContributed,
-  };
+    result.push(current);
+  }
+  return result;
 }
