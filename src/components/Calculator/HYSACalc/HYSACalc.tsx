@@ -28,7 +28,6 @@ export default function HYSACalc() {
                 required
             />
         </form>
-        <p>Total = {result.amount}</p>
     </div>
   )
 }
