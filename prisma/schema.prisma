@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model budgets {
+  budget_id     Int        @id @default(autoincrement())
+  user_id       Int
+  budget_name   String     @db.VarChar(50)
+  category_id   Int
+  budget_limit  Decimal    @db.Decimal
+  budget_freq   String     @db.VarChar(10)
+  start_date    DateTime   @db.Date
+  end_date      DateTime?  @db.Date
+  description   String?    @db.VarChar(255)
+  starts_on_day Int
+  categories    categories @relation(fields: [category_id], references: [category_id], onDelete: NoAction, onUpdate: NoAction)
+  users         users      @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model categories {
+  category_id   Int            @id @default(autoincrement())
+  category_name String         @db.VarChar(50)
+  user_id       Int
+  budgets       budgets[]
+  users         users          @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  transactions  transactions[]
+}
+
+model transactions {
+  transaction_id   Int                   @id @default(autoincrement())
+  user_id          Int
+  amount           Decimal               @db.Decimal
+  category_id      Int
+  transaction_type transaction_type_enum
+  description      String?               @db.VarChar(255)
+  transaction_date DateTime              @default(now()) @db.Timestamp(6)
+  updated_date     DateTime              @default(now()) @db.Timestamp(6)
+  name             String                @db.VarChar(50)
+  categories       categories            @relation(fields: [category_id], references: [category_id], onDelete: NoAction, onUpdate: NoAction)
+  users            users                 @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  user_id       Int            @id @default(autoincrement())
+  username      String         @db.VarChar(50)
+  first_name    String         @db.VarChar(50)
+  last_name     String         @db.VarChar(50)
+  password_hash String         @db.VarChar(255)
+  join_date     DateTime       @default(now()) @db.Timestamp(6)
+  email         String         @unique @db.VarChar(100)
+  budgets       budgets[]
+  categories    categories[]
+  transactions  transactions[]
+}
+
+enum transaction_type_enum {
+  income
+  expense
+}
